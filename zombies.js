@@ -1,3 +1,4 @@
+ /*jshint esversion: 6 */
 /**
  * Class => Item(name)
  * -----------------------------
@@ -39,7 +40,12 @@ class Weapon extends Item {
  * Weapon Extends Item Class
  * -----------------------------
  */
-
+class Food extends Item {
+  constructor(name, energy){
+    super(name);
+    this.energy = energy;
+  }
+}
 
 
 /**
