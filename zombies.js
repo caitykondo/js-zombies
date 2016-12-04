@@ -142,7 +142,7 @@ class Player {
   takeItem(item){
     if(this._pack.length < 3){
       this._pack.push(item);
-      console.log(this.name + ' added a '+ item + ' to their pack.');
+      console.log(`${this.name} added a ${item.name} to their pack.`);
       return true;
     }else {
       console.log('Pack is too full');
@@ -178,11 +178,11 @@ class Player {
   discardItem(item){
     var position = this._pack.indexOf(item);
     if(position === -1){
-      console.log(`Nothing was discarded, ${item} is not in pack.`);
+      console.log(`Nothing was discarded, ${item.name} is not in pack.`);
       return false;
     }else{
       this._pack.splice(position, 1);
-      console.log(`${this.name} removed ${item} from pack.`);
+      console.log(`${this.name} removed ${item.name} from pack.`);
       return true;
     }
   }
@@ -210,13 +210,11 @@ class Player {
     if(itemToEquip instanceof(Weapon) === true && this._pack.indexOf(itemToEquip) !== -1){
       if(this.equipped !== false){
         this._pack.push(this.equipped);
-        this.equipped = itemToEquip;
-        this.discardItem(itemToEquip);
       }
         this.equipped = itemToEquip;
         this.discardItem(itemToEquip);
     }else{
-      console.log(`${itemToEquip} is not in your pack!`);
+      console.log(`${itemToEquip.name} is not in your pack!`);
     }
   }
 
@@ -291,7 +289,7 @@ class Player {
       console.log('No weapon equipped.');
       return false;
     }else {
-      console.log(`${this.name} is equipped with ${this.equipped}`);
+      console.log(`${this.name} is equipped with ${this.equipped.name}`);
       return this.equipped.name;
     }
   }
