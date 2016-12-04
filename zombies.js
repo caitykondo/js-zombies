@@ -75,6 +75,7 @@ class Player {
     this.strength = strength;
     this.speed = speed;
     this._pack = [];
+    this._maxHealth = health;
     this.equipped = false;
 
   }
@@ -118,7 +119,9 @@ class Player {
  *
  * @name checkPack
  */
-
+  getMaxHealth(){
+    return this._maxHealth;
+  }
 /**
  * Player Class Method => takeItem(item)
  * -----------------------------
@@ -204,7 +207,7 @@ class Player {
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
   equip(itemToEquip){
-    if(itemToEquip instanceof(Weapon) === true, this._pack.indexOf(itemToEquip) !== -1){
+    if(itemToEquip instanceof(Weapon) === true && this._pack.indexOf(itemToEquip) !== -1){
       if(this.equipped !== false){
         this._pack.push(this.equipped);
         this.equipped = itemToEquip;
@@ -216,7 +219,6 @@ class Player {
       console.log(`${itemToEquip} is not in your pack!`);
     }
   }
-}
 
 /**
  * Player Class Method => eat(itemToEat)
@@ -236,6 +238,20 @@ class Player {
  * @name eat
  * @param {Food} itemToEat  The food item to eat.
  */
+  eat(itemToEat){
+    if(itemToEat instanceof(Food) === true && this._pack.indexOf(itemToEat) !== -1){
+      if (this.health + itemToEat.energy < this._maxHealth){
+        this.health += itemToEat.energy;
+        this.discardItem(itemToEat);
+      }else{
+        this.health = this._maxHealth;
+        this.discardItem(itemToEat);
+      }
+    }else {
+    console.log(`Cannot eat ${itemToEat}`);
+    }
+  }
+}
 
 
 /**
