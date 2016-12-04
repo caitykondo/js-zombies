@@ -75,6 +75,8 @@ class Player {
     this.strength = strength;
     this.speed = speed;
     this._pack = [];
+    this.equipped = false;
+
   }
 
 /**
@@ -170,28 +172,17 @@ class Player {
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
-discardItem(item){
-  var position = this._pack.indexOf(item);
-  if(position === -1){
-    console.log(`Nothing was discarded, ${item} is not in pack.`);
-    return false;
-  }else{
-    this._pack.splice(position, 1);
-    console.log(`${this.name} discarded ${item}`);
-    return true;
+  discardItem(item){
+    var position = this._pack.indexOf(item);
+    if(position === -1){
+      console.log(`Nothing was discarded, ${item} is not in pack.`);
+      return false;
+    }else{
+      this._pack.splice(position, 1);
+      console.log(`${this.name} removed ${item} from pack.`);
+      return true;
+    }
   }
-}
-
-}
-var newPlayer = new Player("caity", 100, 100, 100);
-newPlayer.takeItem('item1');
-newPlayer.takeItem('item2');
-newPlayer.takeItem('item3');
-newPlayer.checkPack();
-newPlayer.discardItem('item2');
-newPlayer.discardItem('notanItem');
-newPlayer.checkPack();
-
 
 /**
  * Player Class Method => equip(itemToEquip)
@@ -212,7 +203,20 @@ newPlayer.checkPack();
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
-
+  equip(itemToEquip){
+    if(itemToEquip instanceof(Weapon) === true, this._pack.indexOf(itemToEquip) !== -1){
+      if(this.equipped !== false){
+        this._pack.push(this.equipped);
+        this.equipped = itemToEquip;
+        this.discardItem(itemToEquip);
+      }
+        this.equipped = itemToEquip;
+        this.discardItem(itemToEquip);
+    }else{
+      console.log(`${itemToEquip} is not in your pack!`);
+    }
+  }
+}
 
 /**
  * Player Class Method => eat(itemToEat)
