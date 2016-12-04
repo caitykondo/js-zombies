@@ -74,7 +74,9 @@ class Player {
     this.health = health;
     this.strength = strength;
     this.speed = speed;
+    this._pack = [];
   }
+
 
 /**
  * Class => Player(name, health, strength, speed)
@@ -98,9 +100,9 @@ class Player {
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
-checkPack(){
-  console.log('Player' + this.name + this.health + this.strength + this.speed);
-}
+  checkPack(){
+    console.log(this._pack);
+  }
 
 /**
  * Player Class Method => checkPack()
@@ -114,9 +116,6 @@ checkPack(){
  * @name checkPack
  */
 
-}
-var newPlayer = new Player("caity", 100, 100, 100);
-newPlayer.checkPack();
 /**
  * Player Class Method => takeItem(item)
  * -----------------------------
@@ -134,7 +133,17 @@ newPlayer.checkPack();
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
-
+  takeItem(item){
+    if(this._pack.length < 3){
+      this._pack.push(item);
+      console.log(this.name + ' added a '+ item + ' to their pack.');
+      return true;
+    }else {
+      console.log('Pack is too full');
+      return false;
+    }
+  }
+}
 
 /**
  * Player Class Method => discardItem(item)
