@@ -77,7 +77,6 @@ class Player {
     this._pack = [];
   }
 
-
 /**
  * Class => Player(name, health, strength, speed)
  * -----------------------------
@@ -99,11 +98,13 @@ class Player {
  * @property {method} getPack              Returns private variable `pack`.
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
+  getPack(){
+    return this._pack;
+  }
 
   checkPack(){
     console.log(this._pack);
   }
-
 /**
  * Player Class Method => checkPack()
  * -----------------------------
@@ -143,7 +144,6 @@ class Player {
       return false;
     }
   }
-}
 
 /**
  * Player Class Method => discardItem(item)
@@ -170,6 +170,27 @@ class Player {
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
+discardItem(item){
+  var position = this._pack.indexOf(item);
+  if(position === -1){
+    console.log(`Nothing was discarded, ${item} is not in pack.`);
+    return false;
+  }else{
+    this._pack.splice(position, 1);
+    console.log(`${this.name} discarded ${item}`);
+    return true;
+  }
+}
+
+}
+var newPlayer = new Player("caity", 100, 100, 100);
+newPlayer.takeItem('item1');
+newPlayer.takeItem('item2');
+newPlayer.takeItem('item3');
+newPlayer.checkPack();
+newPlayer.discardItem('item2');
+newPlayer.discardItem('notanItem');
+newPlayer.checkPack();
 
 
 /**
