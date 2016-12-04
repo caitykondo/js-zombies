@@ -1,4 +1,3 @@
- /*jshint esversion: 6 */
 /**
  * Class => Item(name)
  * -----------------------------
@@ -47,7 +46,6 @@ class Food extends Item {
   }
 }
 
-
 /**
  * Class => Food(name, energy)
  * -----------------------------
@@ -70,7 +68,13 @@ class Food extends Item {
  * -----------------------------
  */
 
-
+class Player {
+  constructor(name, health, strength, speed){
+    this.name = name;
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+  }
 
 /**
  * Class => Player(name, health, strength, speed)
@@ -94,6 +98,9 @@ class Food extends Item {
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
+checkPack(){
+  console.log('Player' + this.name + this.health + this.strength + this.speed);
+}
 
 /**
  * Player Class Method => checkPack()
@@ -107,7 +114,9 @@ class Food extends Item {
  * @name checkPack
  */
 
-
+}
+var newPlayer = new Player("caity", 100, 100, 100);
+newPlayer.checkPack();
 /**
  * Player Class Method => takeItem(item)
  * -----------------------------
@@ -222,8 +231,6 @@ class Food extends Item {
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
-
-
 /**
  * Class => Zombie(health, strength, speed)
  * -----------------------------
